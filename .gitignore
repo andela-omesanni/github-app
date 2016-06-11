@@ -12,6 +12,7 @@ pids
 tmp/
 public/js
 public/lib
+public/css
 public/shared
 public/views
 public/*.html
