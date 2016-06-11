@@ -1,0 +1,74 @@
+html {
+  height: 100%;
+  background-color: white;
+}
+body {
+  height: 100%;
+  background-color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans;
+  font-size: 12px;
+  color: #333;
+}
+a {
+  outline: none;
+  color: #006699;
+}
+a:focus {
+  outline: none;
+  color: #006699;
+}
+.text-center {
+  text-align: center;
+}
+.no-bg {
+  background-color: transparent;
+}
+.spacer {
+  margin-top: 1.5em;
+}
+.spacer.large {
+  margin-top: 2.5em;
+}
+.spacer.xlarge {
+  margin-top: 3.5em;
+}
+.no-padding {
+  padding: 0;
+}
+table.md-table {
+  border: 1px solid #eee;
+  background-color: #f7f7f7;
+}
+table.md-table tbody {
+  background-color: white;
+}
+table.md-table th {
+  padding: 24px !important;
+}
+table.md-table td#price-td {
+  padding: 24px;
+  border-left: 1px solid #eee;
+}
+table.md-table td.carrier > div {
+  width: 160px;
+}
+table.md-table td.date-time > div {
+  width: 50px;
+}
+.validation-messages {
+  font-size: 11px;
+  color: #f44336;
+}
+#outer-container {
+  padding-left: 100px;
+}
+@media screen and (max-width: 768px) {
+  table.md-table td.carrier > div {
+    width: inherit;
+  }
+}
+@media screen and (max-width: 959px) {
+  #outer-container {
+    padding-left: 8px;
+  }
+}
