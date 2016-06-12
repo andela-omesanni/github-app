@@ -5,6 +5,7 @@ angular.module('gitApp.directives', []);
 angular.module('gitApp.controllers', []);
 
 /* load services */
+require('./js/services/githubService.js');
 
 /* load filters */
 
@@ -21,26 +22,33 @@ window.GitApp = angular.module('GitApp', [
   'gitApp.services',
   'ngAnimate',
   'ngMaterial',
+  'ngResource',
   'md.data.table',
 ]);
 
 /* application routes */
-GitApp.config(['$stateProvider','$locationProvider', '$mdThemingProvider', '$mdDateLocaleProvider',
-  ($stateProvider, $locationProvider, $mdThemingProvider, $mdDateLocaleProvider) => {
+GitApp.config(['$stateProvider','$locationProvider', '$mdThemingProvider',
+  ($stateProvider, $locationProvider, $mdThemingProvider) => {
     $locationProvider.html5Mode(true);
 
-    const customBlueMap = $mdThemingProvider.extendPalette('light-blue', {
-      'contrastDefaultColor': 'light',
-      'contrastDarkColors': ['50'],
-      '50': 'ffffff'
+    const customBlueMap = $mdThemingProvider.extendPalette('blue', {
+        50: '#DCEFFF',
+        100: '#AAD1F9',
+        200: '#7BB8F5',
+        300: '#4C9EF1',
+        400: '#1C85ED',
+        500: '#106CC8',
+        600: '#0159A2',
+        700: '#025EE9',
+        800: '#014AB6',
+        900: '#013583',
+        contrastDefaultColor: 'light',
+        contrastDarkColors: '50 100 200 A100',
+        contrastStrongLightColors: "300 400 A200 A400"
     });
 
     $mdThemingProvider.definePalette('customBlue', customBlueMap);
-    $mdThemingProvider.theme('ranger')
-      .primaryPalette('customBlue', {
-        'default': '500',
-        'hue-1': '50'
-      });
+    $mdThemingProvider.theme('variant').primaryPalette('customBlue');
       
     $stateProvider
       .state('default', {

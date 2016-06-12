@@ -1,9 +1,49 @@
-md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column")
+md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="variant")
   md-toolbar(layout)
     .md-toolbar-tools(layout-align="center center")
       span GITHUB REPOS
 
-#outer-container.md-padding
+#outer-container.md-padding(flex="90" flex-sm="100" flex-md="100")
+  md-whiteframe.md-whiteframe-1dp(layout="column")
+    .md-input-wrapper(layout layout-align="center")
+      md-input-container(flex="60")
+        label github username
+        input(type="text" name="usernameInput" ng-model="username")
 
+      md-button.md-icon-button(aria-label="search" ng-click="getRepos()")
+        i.mdi.mdi-magnify
+
+  #results-container.spacer.xlarge(flex flex-sm="100" flex-md="100")
+    .md-whiteframe-1dp(md-theme="variant") 
+      md-toolbar#header
+        .md-toolbar-tools
+          span Results
+      
+      div
+        .md-padding.text-center(ng-if="!repos.length && !fetching")
+          h3 No results
+
+        div(ng-if="fetching" layout="row" layout-align="space-around")
+          md-progress-circular.md-accent(md-mode="indeterminate")
+
+        md-list.no-padding(ng-if="repos.length && !fetching")
+          md-list-item.md-3-line(ng-repeat="repo in repos | limitTo: resultsLimit" layout="row" flex layout-align="space-between" layout-sm="column" md-ink-ripple)       
+            .left-grid(flex="70" flex-md="60" flex-sm="100")
+              h4 
+                small.octicon(ng-class="{'octicon-repo-forked': repo.fork, 'octicon-repo': !repo.fork}")
+                a(href="{{repo.html_url}}" target="_blank") {{repo.name}}
+                small {{repo.description}}
+
+            .right-grid(flex="30" flex-md="40" flex-sm="100")
+              dl.horizontal
+                dt Last Updated:
+                dd {{repo.updated_at | date : short : timezone}}
+                dt Created:
+                dd {{repo.created_at| date : short : timezone}}
+
+            md-divider(ng-if="!$last || resultsLimit < repos.length")
+
+        .md-padding(layout layout-align="center center" ng-show="resultsLimit < repos.length")
+          md-button.md-raised(flex="20" flex-sm="50" flex-md="40" ng-click="resultsLimit = resultsLimit + 15") Show more
               
   
