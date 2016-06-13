@@ -6,7 +6,7 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
 #outer-container.md-padding(flex="90" flex-sm="100" flex-md="100")
   md-whiteframe.md-whiteframe-1dp(layout="column")
     .md-input-wrapper(layout layout-align="center")
-      md-input-container(flex="60")
+      md-input-container(flex="60" flex-md="70" flex-sm="80")
         label github username
         input(type="text" name="usernameInput" ng-model="username")
 
@@ -23,8 +23,7 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
         .md-padding.text-center(ng-if="!repos.length && !fetching")
           h3 No results
 
-        div(ng-if="fetching" layout="row" layout-align="space-around")
-          md-progress-circular.md-accent(md-mode="indeterminate")
+        async-loader(fetching='fetching')
 
         md-list.no-padding(ng-if="repos.length && !fetching")
           md-list-item.md-3-line(ng-repeat="repo in repos | limitTo: resultsLimit" layout="row" flex layout-align="space-between" layout-sm="column" md-ink-ripple)       
@@ -39,7 +38,7 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
                 dt Last Updated:
                 dd {{repo.updated_at | date : short : timezone}}
                 dt Created:
-                dd {{repo.created_at| date : short : timezone}}
+                dd {{repo.created_at | date : short : timezone}}
 
             md-divider(ng-if="!$last || resultsLimit < repos.length")
 

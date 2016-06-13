@@ -1,18 +1,16 @@
 angular.module('gitApp.services')
-  .factory('GithubService', ['$rootScope', '$resource', '$http', '$q', ($rootScope, $resource, $http, $q) => {
-    return {
-      api: $resource('https://api.github.com/users/:username/repos', { username : '@username' }, {
-          fetch: {method: 'GET', isArray: true}
-      }),
-      getRepos: function(username) {
-        const deferred = $q.defer();
-        const Repos = this.api;
+  .service('GithubService', ['$rootScope', '$resource', '$q', function($rootScope, $resource, $q) {
+    const Repos = $resource('https://api.github.com/users/:username/repos', { username : '@username' }, {
+                    fetch: {method: 'GET', isArray: true}
+                  });
 
-        Repos.fetch({username}, 
-          resp => deferred.resolve(resp),
-          err => deferred.reject(err));
+    this.getRepos = (username) => {
+      const deferred = $q.defer();
 
-        return deferred.promise;
-      }
+      Repos.fetch({username}, 
+        resp => deferred.resolve(resp),
+        err => deferred.reject(err));
+
+      return deferred.promise;
     };
   }]);

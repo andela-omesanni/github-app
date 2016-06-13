@@ -30,7 +30,6 @@
     "uglify-js": "^2.4.15",
     "uglifyify": "^2.5.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^1.0.6",
     "xtend": "latest"
   },
   "scripts": {

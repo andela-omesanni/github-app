@@ -2,12 +2,18 @@ angular.module('gitApp.controllers')
   .controller('HomeCtrl', ['$scope', 'GithubService',
     ($scope, GithubService) => {
 
+      /**
+       * Display appropriate error message to the user
+       * @param  {object} err the error object returned by GithubService
+       */
       function displayErrorMessage(err) {
         $scope.fetching = false;
 
+        // if request times out
         if(err.status === 408 || err.statusText === '') {
           toastr.error('No response from Github servers');
         }
+        // user account does not exist
         else if(err.status === 404) {
           toastr.error('User does not exist');
         }
@@ -16,6 +22,7 @@ angular.module('gitApp.controllers')
         }
       }
 
+      // Fetches the user's repo from github
       $scope.getRepos = () => {
         if(!$scope.username) {
           return ;
@@ -23,7 +30,7 @@ angular.module('gitApp.controllers')
 
         $scope.fetching = true;
         $scope.resultsLimit = 15;
-        $scope.repos = [];
+        $scope.repos = []; 
 
         GithubService
           .getRepos($scope.username)
