@@ -26,7 +26,6 @@
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-jasmine": "^1.0.2",
-    "karma-ng-html2js-preprocessor": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
     "lodash": "^2.4.1",
     "module-deps": "^3.5.10",

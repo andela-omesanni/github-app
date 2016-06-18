@@ -26,7 +26,7 @@ gulp.task('jade', function() {
     .pipe(gulp.dest('./public/'));
 });
 
-gulp.task('less', function () {
+gulp.task('less', function() {
   gulp.src(paths.styles)
     .pipe(less({
       paths: [ path.join(__dirname, 'styles') ]
@@ -39,7 +39,7 @@ gulp.task('static-files', function() {
     .pipe(gulp.dest('public/'));
 });
 
-gulp.task('nodemon', function () {
+gulp.task('nodemon', function() {
   nodemon({ 
     script: 'server.js', 
     ext: 'js', 
