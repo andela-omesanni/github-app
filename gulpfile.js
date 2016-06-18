@@ -1,5 +1,4 @@
 var browserify = require('browserify'),
-    bower = require('gulp-bower'),
     gulp = require('gulp'),
     gutil = require('gulp-util'),
     jade = require('gulp-jade'),
@@ -67,11 +66,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['browserify']);
 });
 
-gulp.task('bower', function() {
-  return bower()
-    .pipe(gulp.dest('public/lib/'));
-});
-
 gulp.task('test:unit', function(done) {
   new Server({
     configFile: __dirname + '/karma.config.js',
@@ -80,5 +74,5 @@ gulp.task('test:unit', function(done) {
 });
 
 
-gulp.task('build', ['bower', 'jade', 'less', 'browserify', 'static-files']);
+gulp.task('build', ['jade', 'less', 'browserify', 'static-files']);
 gulp.task('default', ['nodemon', 'build', 'watch']);
