@@ -38,7 +38,7 @@
     "xtend": "latest"
   },
   "scripts": {
-    "prestart": "npm install && bower install",
+    "prestart": "npm install && bower install --allow-root",
     "start": "gulp"
   }
 }
