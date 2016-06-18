@@ -45,7 +45,7 @@ gulp.task('nodemon', function() {
     ext: 'js', 
     ignore: ['public/**', 'app/**', 'test/**', 'node_modules/**'] 
   })
-  .on('restart',['jade','less'], function() {
+  .on('restart', ['jade','less'], function() {
     console.log('>> node restart');
   });
 });

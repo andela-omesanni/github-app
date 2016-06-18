@@ -27,7 +27,7 @@ window.GitApp = angular.module('GitApp', [
 ]);
 
 /* application routes */
-GitApp.config(['$stateProvider','$locationProvider', '$mdThemingProvider',
+GitApp.config(['$stateProvider', '$locationProvider', '$mdThemingProvider',
   ($stateProvider, $locationProvider, $mdThemingProvider) => {
     $locationProvider.html5Mode(true);
 
@@ -44,7 +44,7 @@ GitApp.config(['$stateProvider','$locationProvider', '$mdThemingProvider',
       900: '#013583',
       contrastDefaultColor: 'light',
       contrastDarkColors: '50 100 200 A100',
-      contrastStrongLightColors: "300 400 A200 A400"
+      contrastStrongLightColors: '300 400 A200 A400'
     });
 
     $mdThemingProvider.definePalette('customBlue', customBlueMap);
