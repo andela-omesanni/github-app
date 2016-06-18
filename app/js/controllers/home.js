@@ -1,13 +1,14 @@
 angular.module('gitApp.controllers') 
-  .controller('HomeCtrl', ['$scope', 'GithubService',
-    function($scope, GithubService) {
-      var vm =this;console.log(vm);
+  .controller('HomeCtrl', ['GithubService',
+    function(GithubService) {
+      var vm = this; 
+      
       /**
        * Display appropriate error message to the user
        * @param  {object} err the error object returned by GithubService
        */
       function displayErrorMessage(err) {
-        $scope.fetching = false; 
+        vm.fetching = false; 
 
         // if request times out
         if(err.status === 408 || err.statusText === '') {
@@ -23,20 +24,20 @@ angular.module('gitApp.controllers')
       }
 
       // Fetches the user's repo from github
-      $scope.getRepos = () => {
-        if(!$scope.username) {
+      vm.getRepos = () => {
+        if(!vm.username) {
           return ;
         }
 
-        $scope.fetching = true;
-        $scope.resultsLimit = 15;
-        $scope.repos = []; 
+        vm.fetching = true;
+        vm.resultsLimit = 15;
+        vm.repos = []; 
 
         GithubService
-          .getRepos($scope.username)
+          .getRepos(vm.username)
           .then(resp => { 
-            $scope.repos = resp; 
-            $scope.fetching = false;
+            vm.repos = resp; 
+            vm.fetching = false;
           }, err => displayErrorMessage(err));
       };
     }

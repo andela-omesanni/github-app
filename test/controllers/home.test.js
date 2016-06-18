@@ -17,27 +17,27 @@ describe('Home Controller Test', function() {
   }));
 
   it('should return undefined due to username not specified', function() {
-    expect(scope.getRepos()).toBeUndefined();
+    expect(ctrl.getRepos()).toBeUndefined();
   });
 
   it('should fetch user\'s repos', function() {
-    scope.username = 'angular';
-    scope.getRepos();
+    ctrl.username = 'angular';
+    ctrl.getRepos();
 
     deferred.resolve([{name: 'angular'}]);
     rootScope.$digest();
          
-    expect(scope.repos.length).toEqual(1);
+    expect(ctrl.repos.length).toEqual(1);
   });
 
   function testForErrors(errObject, text) {
-    scope.username = 'omesanni';
-    scope.getRepos();
+    ctrl.username = 'omesanni';
+    ctrl.getRepos();
 
     deferred.reject(errObject);
     rootScope.$digest();
 
-    expect(scope.repos.length).toBeFalsy();
+    expect(ctrl.repos.length).toBeFalsy();
     expect($('.toast-message').text()).toEqual(text); 
   }
 

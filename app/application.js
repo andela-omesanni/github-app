@@ -54,6 +54,7 @@ GitApp.config(['$stateProvider','$locationProvider', '$mdThemingProvider',
       .state('default', {
         url: '/',
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        controllerAs: 'home'
       });
 }]);

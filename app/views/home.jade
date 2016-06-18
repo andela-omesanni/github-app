@@ -5,10 +5,10 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
 
 #outer-container.md-padding(flex="90" flex-sm="100" flex-md="100")
   md-whiteframe.md-whiteframe-1dp(layout="column")
-    form.md-input-wrapper(layout layout-align="center" ng-submit="getRepos()")
+    form.md-input-wrapper(layout layout-align="center" ng-submit="home.getRepos()")
       md-input-container(flex="60" flex-md="70" flex-sm="80")
         label github username
-        input(type="text" name="usernameInput" ng-model="username")
+        input(type="text" name="usernameInput" ng-model="home.username")
 
       md-button.md-icon-button(type="submit" aria-label="search")
         i.mdi.mdi-magnify
@@ -20,13 +20,13 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
           span Results
       
       div
-        .md-padding.text-center(ng-if="!repos.length && !fetching")
+        .md-padding.text-center(ng-if="!home.repos.length && !home.fetching")
           h3 No results
 
-        async-loader(fetching='fetching')
+        async-loader(fetching='home.fetching')
 
-        md-list.no-padding(ng-if="repos.length && !fetching")
-          md-list-item.md-3-line(ng-repeat="repo in repos | limitTo: resultsLimit" layout="row" flex layout-align="space-between" layout-sm="column" md-ink-ripple)       
+        md-list.no-padding(ng-if="home.repos.length && !home.fetching")
+          md-list-item.md-3-line(ng-repeat="repo in home.repos | limitTo: home.resultsLimit" layout="row" flex layout-align="space-between" layout-sm="column" md-ink-ripple)       
             .left-grid(flex="70" flex-md="60" flex-sm="100")
               h4 
                 small.octicon(ng-class="{'octicon-repo-forked': repo.fork, 'octicon-repo': !repo.fork}")
@@ -40,9 +40,9 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
                 dt Created:
                 dd {{repo.created_at | date : short : timezone}}
 
-            md-divider(ng-if="!$last || resultsLimit < repos.length")
+            md-divider(ng-if="!$last || home.resultsLimit < home.repos.length")
 
-        .md-padding(layout layout-align="center center" ng-show="resultsLimit < repos.length")
-          md-button.md-raised(flex="20" flex-sm="50" flex-md="40" ng-click="resultsLimit = resultsLimit + 15") Show more
+        .md-padding(layout layout-align="center center" ng-show="home.resultsLimit < home.repos.length")
+          md-button.md-raised(flex="20" flex-sm="50" flex-md="40" ng-click="home.resultsLimit = home.resultsLimit + 15") Show more
               
   

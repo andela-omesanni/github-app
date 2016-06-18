@@ -2,14 +2,13 @@
 
 describe('Github Service Test', function() {
 
-  var scope, GithubService, httpBackend;
+  var GithubService, httpBackend;
 
   var endPoint = 'https://api.github.com/users/{username}/repos';
 
   beforeEach(module('GitApp'));
 
-  beforeEach(inject(function($rootScope, _GithubService_, $httpBackend) {
-    scope = $rootScope;
+  beforeEach(inject(function(_GithubService_, $httpBackend) {
     GithubService = _GithubService_;
     httpBackend = $httpBackend;
   }));
