@@ -1,5 +1,5 @@
 angular.module('gitApp.services')
-  .service('GithubService', ['$rootScope', '$resource', '$q', function($rootScope, $resource, $q) {
+  .service('GithubService', ['$resource', '$q', function($resource, $q) {
     const Repos = $resource('https://api.github.com/users/:username/repos', { username : '@username' }, {
                     fetch: {method: 'GET', isArray: true}
                   });

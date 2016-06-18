@@ -7,7 +7,8 @@ var browserify = require('browserify'),
     nodemon = require('gulp-nodemon'),
     path = require('path'),
     source = require('vinyl-source-stream'),
-    babel = require('babelify');
+    babel = require('babelify'),
+    Server = require('karma').Server;
 
 var paths = {
   public: 'public/**',
@@ -40,10 +41,14 @@ gulp.task('static-files', function() {
 });
 
 gulp.task('nodemon', function () {
-  nodemon({ script: 'server.js', ext: 'js', ignore: ['public/**','app/**','node_modules/**'] })
-    .on('restart',['jade','less'], function() {
-      console.log('>> node restart');
-    });
+  nodemon({ 
+    script: 'server.js', 
+    ext: 'js', 
+    ignore: ['public/**', 'app/**', 'test/**', 'node_modules/**'] 
+  })
+  .on('restart',['jade','less'], function() {
+    console.log('>> node restart');
+  });
 });
 
 gulp.task('browserify', function() {
@@ -67,6 +72,13 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('public/lib/'));
 });
 
+gulp.task('test:unit', function(done) {
+  new Server({
+    configFile: __dirname + '/karma.config.js',
+    singleRun: true
+  }, done).start();
+});
 
-gulp.task('build', ['bower','jade','less','browserify','static-files']);
+
+gulp.task('build', ['bower', 'jade', 'less', 'browserify', 'static-files']);
 gulp.task('default', ['nodemon', 'build', 'watch']);

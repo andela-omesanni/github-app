@@ -1,13 +1,13 @@
 angular.module('gitApp.controllers') 
   .controller('HomeCtrl', ['$scope', 'GithubService',
-    ($scope, GithubService) => {
-
+    function($scope, GithubService) {
+      var vm =this;console.log(vm);
       /**
        * Display appropriate error message to the user
        * @param  {object} err the error object returned by GithubService
        */
       function displayErrorMessage(err) {
-        $scope.fetching = false;
+        $scope.fetching = false; 
 
         // if request times out
         if(err.status === 408 || err.statusText === '') {
@@ -34,8 +34,8 @@ angular.module('gitApp.controllers')
 
         GithubService
           .getRepos($scope.username)
-          .then(resp => {
-            $scope.repos = resp;
+          .then(resp => { 
+            $scope.repos = resp; 
             $scope.fetching = false;
           }, err => displayErrorMessage(err));
       };

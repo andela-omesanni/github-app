@@ -5,12 +5,12 @@ md-whiteframe.md-default-theme.md-whiteframe-2dp(layout="column" md-theme="varia
 
 #outer-container.md-padding(flex="90" flex-sm="100" flex-md="100")
   md-whiteframe.md-whiteframe-1dp(layout="column")
-    .md-input-wrapper(layout layout-align="center")
+    form.md-input-wrapper(layout layout-align="center" ng-submit="getRepos()")
       md-input-container(flex="60" flex-md="70" flex-sm="80")
         label github username
         input(type="text" name="usernameInput" ng-model="username")
 
-      md-button.md-icon-button(aria-label="search" ng-click="getRepos()")
+      md-button.md-icon-button(type="submit" aria-label="search")
         i.mdi.mdi-magnify
 
   #results-container.spacer.xlarge(flex flex-sm="100" flex-md="100")
