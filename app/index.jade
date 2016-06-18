@@ -1,8 +1,8 @@
 doctype html
-html(lang="en" ng-app="GitApp")
+html(lang="en")
   head
     title Github App
     include shared/head
 
-  body(layout="column" layout-fill)
+  body(layout="column" ng-app="GitApp" layout-fill)
     div(ui-view)
