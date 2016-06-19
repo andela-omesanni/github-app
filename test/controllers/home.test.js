@@ -31,6 +31,8 @@ describe('Home Controller Test', function() {
   });
 
   function testForErrors(errObject, text) {
+    spyOn(toastr, 'error');
+
     ctrl.username = 'omesanni';
     ctrl.getRepos();
 
@@ -38,7 +40,7 @@ describe('Home Controller Test', function() {
     rootScope.$digest();
 
     expect(ctrl.repos.length).toBeFalsy();
-    expect($('.toast-message').text()).toEqual(text); 
+    expect(toastr.error).toHaveBeenCalledWith(text);
   }
 
   it('should test for 404 error', function() {
@@ -46,7 +48,6 @@ describe('Home Controller Test', function() {
   });
 
   it('should test for no response error', function() {
-    $('.toast-message').empty();
     testForErrors({statusText: ''}, 'No response from Github servers');
   });
 });
