@@ -23,7 +23,7 @@ angular.module('gitApp.controllers')
     }
 
     // Fetches the user's repo from github
-    vm.getRepos = () => {
+    vm.getRepos = function() {
       if(!vm.username) {
         return ;
       }
