@@ -15,7 +15,7 @@ require('./js/directives/asyncLoader.js');
 /* load controllers */
 require('./js/controllers/home.js');
 
-window.GitApp = angular.module('GitApp', [
+var GitApp = angular.module('GitApp', [
   'ui.router',
   'gitApp.controllers',
   'gitApp.directives',
