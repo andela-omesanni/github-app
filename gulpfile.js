@@ -13,11 +13,7 @@ var paths = {
   public: 'public/**',
   jade: 'app/**/*.jade',
   styles: 'app/styles/*.+(less|css)',
-  scripts: 'app/**/*.js',
-  staticFiles: [
-    '!app/**/*.+(less|css|js|jade)',
-    'app/**/*.*'
-  ]
+  scripts: 'app/**/*.js'
 };
 
 gulp.task('jade', function() {
@@ -32,11 +28,6 @@ gulp.task('less', function() {
       paths: [ path.join(__dirname, 'styles') ]
     }))
     .pipe(gulp.dest('./public/css'));
-});
-
-gulp.task('static-files', function() {
-  return gulp.src(paths.staticFiles)
-    .pipe(gulp.dest('public/'));
 });
 
 gulp.task('nodemon', function() {
@@ -74,5 +65,5 @@ gulp.task('test:unit', function(done) {
 });
 
 
-gulp.task('build', ['jade', 'less', 'browserify', 'static-files']);
+gulp.task('build', ['jade', 'less', 'browserify']);
 gulp.task('default', ['nodemon', 'build', 'watch']);
