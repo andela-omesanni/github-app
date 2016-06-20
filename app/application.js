@@ -28,7 +28,7 @@ var GitApp = angular.module('GitApp', [
 
 /* application routes */
 GitApp.config(['$stateProvider', '$locationProvider', '$mdThemingProvider',
-  ($stateProvider, $locationProvider, $mdThemingProvider) => {
+  function($stateProvider, $locationProvider, $mdThemingProvider) {
     $locationProvider.html5Mode(true);
 
     const customBlueMap = $mdThemingProvider.extendPalette('blue', {
